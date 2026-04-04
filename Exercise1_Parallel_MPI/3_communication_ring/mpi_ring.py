@@ -13,6 +13,10 @@ REQUIREMENTS:
   - MPI library: Microsoft MPI (Windows) or OpenMPI/MPICH (Linux/Mac)
 """
 
+
+## LINE TO EXECUTE:
+# mpiexec -n 4 python Exercise1_Parallel_MPI/3_communication_ring/mpi_ring.py
+
 import sys
 from pathlib import Path
 
