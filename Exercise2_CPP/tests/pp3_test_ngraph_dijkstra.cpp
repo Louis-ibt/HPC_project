@@ -119,7 +119,7 @@ int main()
 
     // ── Read Gp adjacency list from file and run Dijkstra ────
     std::cout << "\n-- Gp adjacency list from file (if present) ----------\n";
-    std::ifstream f("../../outputs/Exercise1_Python/Gp_adjacency_list.txt");
+    std::ifstream f("../outputs/Exercise1_Python/Gp_adjacency_list.txt");
     if (f)
     {
         Graph Gp;
