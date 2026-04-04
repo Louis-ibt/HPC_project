@@ -57,10 +57,13 @@ mpiexec -n 8 python Exercise1_Parallel_MPI/3_communication_ring/mpi_ring.py
 #### Exercise 3: C++ Graph Classes & Dijkstra
 ```bash
 cd Exercise2_CPP
-make clean && make
-./bin/pp1_test_graphs
-./bin/pp2_test_linalg
-./bin/pp3_test_ngraph_dijkstra
+g++ -std=c++17 -Wall -O2 -I./1_graph_classes -o pp1 tests/pp1_test_graphs.cpp
+g++ -std=c++17 -Wall -O2 -I./2_linear_algebra -o pp2 tests/pp2_test_linalg.cpp
+g++ -std=c++17 -Wall -O2 -I./1_graph_classes  -o pp3 tests/pp3_test_ngraph_dijkstra.cpp
+
+.\pp1
+.\pp2
+.\pp3
 ```
 **Outputs saved to:** `outputs/Exercise2_CPP/`
 
