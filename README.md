@@ -11,10 +11,10 @@ HPC_project/
 ├── Exercise1_Python/              # Graph algorithms & visualization
 │   └── 1_graph_properties/
 │       └── exercise1.py           # Main Python implementation
-├── Exercise2_Parallel_MPI/        # Parallel MPI exercises
+├── Exercise1_Parallel_MPI/        # Parallel MPI exercises
 │   └── 3_communication_ring/
 │       └── mpi_ring.py            # MPI ring topology
-├── Exercise3_CPP/                 # C++ implementations
+├── Exercise2_CPP/                 # C++ implementations
 │   ├── 1_graph_classes/
 │   ├── 2_linear_algebra/
 │   ├── 3_dijkstra/
@@ -22,8 +22,8 @@ HPC_project/
 │   └── Makefile
 ├── outputs/                       # 📊 All generated outputs (organized by exercise)
 │   ├── Exercise1_Python/          # Python-generated graphs & matrices
-│   ├── Exercise2_Parallel_MPI/    # MPI output & logs
-│   └── Exercise3_CPP/             # Compiled binaries & test results
+│   ├── Exercise1_Parallel_MPI/    # MPI output & logs
+│   └── Exercise2_CPP/             # Compiled binaries & test results
 ├── Article/                       # Course materials & documentation
 └── README.md                      # This file
 ```
@@ -50,19 +50,19 @@ python Exercise1_Python/1_graph_properties/exercise1.py
 
 #### Exercise 2: Parallel MPI Ring
 ```bash
-mpirun -n 8 python Exercise2_Parallel_MPI/3_communication_ring/mpi_ring.py
+mpiexec -n 8 python Exercise1_Parallel_MPI/3_communication_ring/mpi_ring.py
 ```
-**Outputs saved to:** `outputs/Exercise2_Parallel_MPI/`
+**Outputs saved to:** `outputs/Exercise1_Parallel_MPI/`
 
 #### Exercise 3: C++ Graph Classes & Dijkstra
 ```bash
-cd Exercise3_CPP
+cd Exercise2_CPP
 make clean && make
 ./bin/pp1_test_graphs
 ./bin/pp2_test_linalg
 ./bin/pp3_test_ngraph_dijkstra
 ```
-**Outputs saved to:** `outputs/Exercise3_CPP/`
+**Outputs saved to:** `outputs/Exercise2_CPP/`
 
 ---
 
@@ -86,7 +86,7 @@ Exercise1_Python/exercise1.py
 savefig() → outputs/Exercise1_Python/*.png
 savetxt() → outputs/Exercise1_Python/*.txt
     ↓
-Exercise3_CPP/tests/*.cpp (reads these files)
+Exercise2_CPP/tests/*.cpp (reads these files)
 ```
 
 ---
@@ -175,7 +175,7 @@ python Exercise1_Python/1_graph_properties/exercise1.py
 ls outputs/Exercise1_Python/
 
 # 3. Build and test C++
-cd Exercise3_CPP && make && make test
+cd Exercise2_CPP && make && make test
 
 # 4. Verify C++ can read Python outputs
 ./bin/pp2_test_linalg
