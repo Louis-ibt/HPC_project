@@ -55,7 +55,7 @@ int main()
     // ── Read Gp adjacency matrix from file (if present) ───────
     std::cout << "\n── Read Gp adjacency matrix from file ───────\n";
     try {
-        Matrix A = Matrix::read_int_file("../exercise1_python/Gp_adjacency_matrix.txt");
+        Matrix A = Matrix::read_int_file("../../outputs/Exercise1_Python/Gp_adjacency_matrix.txt");
         std::cout << A;
     } catch (std::exception &e) {
         std::cout << "  (skipped: " << e.what() << ")\n";

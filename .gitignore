@@ -1,0 +1,35 @@
+# Build outputs
+build/
+*.o
+*.a
+*.so
+*.dylib
+
+# Python __pycache__
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Old output files (now organized in outputs/ directory)
+*.png
+*.pdf
+*.txt
+*.csv
+
+# But keep .gitignore and README files
+!.gitignore
+!README.md
+!*.md
+
+# Generated outputs should stay in outputs/ folder only
+!/outputs/

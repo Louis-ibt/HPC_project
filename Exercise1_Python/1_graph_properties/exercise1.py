@@ -14,6 +14,12 @@ Topics covered:
 import networkx as nx
 import matplotlib.pyplot as plt
 import numpy as np
+import os
+from pathlib import Path
+
+# Setup output directory
+OUTPUT_DIR = Path(__file__).parent.parent.parent / "outputs" / "Exercise1_Python"
+OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
 # ─────────────────────────────────────────────────────────────
 # 1. CYCLE DETECTION  (directed graph)
@@ -141,7 +147,7 @@ def plot_all_trees(n: int):
                 node_color="skyblue", node_size=600,
                 arrows=True, font_size=10)
     plt.tight_layout()
-    plt.savefig("tree_6plots.png", dpi=100)
+    plt.savefig(OUTPUT_DIR / "tree_6plots.png", dpi=100)
     plt.close()
     print(f"  Saved tree_6plots.png  (n={n})")
 
@@ -177,7 +183,7 @@ nx.draw(T4_swapped, pos4s, ax=ax2, with_labels=True, node_color="lightsalmon",
         node_size=700, arrows=True)
 ax2.set_title("After swap(2, 4)")
 plt.tight_layout()
-plt.savefig("tree_swap.png", dpi=100)
+plt.savefig(OUTPUT_DIR / "tree_swap.png", dpi=100)
 plt.close()
 print("  Saved tree_swap.png")
 
@@ -200,7 +206,7 @@ nx.draw_circular(G_ring, with_labels=True, labels={n: n for n in G_ring.nodes()}
                  arrows=True, font_size=11, font_weight="bold")
 plt.title("Ring graph G (circular layout)")
 plt.tight_layout()
-plt.savefig("ring_graph.png", dpi=100)
+plt.savefig(OUTPUT_DIR / "ring_graph.png", dpi=100)
 plt.close()
 print("  Saved ring_graph.png")
 
@@ -266,9 +272,9 @@ for v, nbrs in L.items():
     print(f"    {v}: {nbrs}")
 
 # Save A, I, L as text files for the C++ reader
-np.savetxt("Gp_adjacency_matrix.txt",  A,     fmt="%d")
-np.savetxt("Gp_incidence_matrix.txt",  I_mat, fmt="%d")
-with open("Gp_adjacency_list.txt", "w") as f:
+np.savetxt(OUTPUT_DIR / "Gp_adjacency_matrix.txt",  A,     fmt="%d")
+np.savetxt(OUTPUT_DIR / "Gp_incidence_matrix.txt",  I_mat, fmt="%d")
+with open(OUTPUT_DIR / "Gp_adjacency_list.txt", "w") as f:
     for v, nbrs in L.items():
         f.write(f"{v}: {' '.join(map(str, nbrs))}\n")
 print("  Saved Gp_adjacency_matrix.txt / Gp_incidence_matrix.txt / Gp_adjacency_list.txt")
@@ -288,7 +294,7 @@ plt.legend()
 plt.title(f"Pair-graph Gp (n={n_gp})")
 plt.axis("off")
 plt.tight_layout()
-plt.savefig("pair_graph.png", dpi=100)
+plt.savefig(OUTPUT_DIR / "pair_graph.png", dpi=100)
 plt.close()
 print("  Saved pair_graph.png")
 
@@ -300,7 +306,8 @@ print("  Saved pair_graph.png")
 #       because it must be launched with  mpirun -n <N> python mpi_ring.py
 # ─────────────────────────────────────────────────────────────
 
-print("\nAll exercises completed.  Output files:")
+print(f"\nAll exercises completed.  Output files saved to:")
+print(f"  {OUTPUT_DIR}")
 for fname in ["tree_6plots.png", "tree_swap.png", "ring_graph.png",
               "pair_graph.png",
               "Gp_adjacency_matrix.txt",
