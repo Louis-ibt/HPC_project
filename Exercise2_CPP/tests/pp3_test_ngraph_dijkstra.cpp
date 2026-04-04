@@ -61,64 +61,64 @@ std::map<unsigned int, double> dijkstra(const Graph &G,
 // ─────────────────────────────────────────────────────────────────────────────
 int main()
 {
-    std::cout << "═══════════════════════════════════════════════════\n";
-    std::cout << "  PP3 – NGraph operations + Dijkstra's algorithm   \n";
-    std::cout << "═══════════════════════════════════════════════════\n\n";
+    std::cout << "===========================================\n";
+    std::cout << "  PP3 - NGraph operations + Dijkstra's algorithm   \n";
+    std::cout << "===========================================\n\n";
 
-    // ── Build graph G1 ────────────────────────────────────────
+    // -- Build graph G1 ----------------------------------------
     Graph G1;
     G1.insert_edge(1u, 2u); G1.insert_edge(1u, 3u);
     G1.insert_edge(2u, 4u); G1.insert_edge(3u, 4u);
     G1.insert_edge(4u, 5u);
-    std::cout << "── G1 ──────────────────────────────────────────────\n";
+    std::cout << "-- G1 -------------------------------------------\n";
     G1.print();
 
-    // ── Build graph G2 ────────────────────────────────────────
+    // -- Build graph G2 ----------------------------------------
     Graph G2;
     G2.insert_edge(3u, 4u); G2.insert_edge(4u, 5u);
     G2.insert_edge(5u, 6u);
-    std::cout << "\n── G2 ──────────────────────────────────────────────\n";
+    std::cout << "\n-- G2 -------------------------------------------\n";
     G2.print();
 
-    // ── Union ─────────────────────────────────────────────────
+    // -- Union ------------------------------------------------
     Graph GU = G1 + G2;
-    std::cout << "\n── G1 ∪ G2 ─────────────────────────────────────────\n";
+    std::cout << "\n-- G1 U G2 ----------------------------------------\n";
     GU.print();
 
-    // ── Intersection ──────────────────────────────────────────
+    // -- Intersection -----------------------------------------
     Graph GI = G1 * G2;
-    std::cout << "\n── G1 ∩ G2 ─────────────────────────────────────────\n";
+    std::cout << "\n-- G1 ^ G2 ----------------------------------------\n";
     GI.print();
 
-    // ── Difference ────────────────────────────────────────────
+    // -- Difference -------------------------------------------
     Graph GD = G1 - G2;
-    std::cout << "\n── G1 \\ G2 ─────────────────────────────────────────\n";
+    std::cout << "\n-- G1 \\ G2 ----------------------------------------\n";
     GD.print();
 
-    // ── SubGraph induced by {2,3,4} ───────────────────────────
+    // -- SubGraph induced by {2,3,4} ------------------------
     Graph::vertex_set sub_verts = {2u, 3u, 4u};
     Graph GSub = G1.subgraph(sub_verts);
-    std::cout << "\n── SubGraph G1[{2,3,4}] ────────────────────────────\n";
+    std::cout << "\n-- SubGraph G1[{2,3,4}] -------------------------\n";
     GSub.print();
 
-    // ── Dijkstra on GU from vertex 1 ─────────────────────────
+    // -- Dijkstra on GU from vertex 1 -------------------------
     WeightMap W;
     W[{1u,2u}]=1.0; W[{1u,3u}]=4.0; W[{2u,4u}]=2.0;
     W[{3u,4u}]=1.0; W[{4u,5u}]=3.0; W[{5u,6u}]=1.0;
     W[{3u,4u}]=1.0; // shared edge
 
     auto dist = dijkstra(GU, 1u, W);
-    std::cout << "\n── Dijkstra from vertex 1 (G1∪G2 with weights) ─────\n";
+    std::cout << "\n-- Dijkstra from vertex 1 (G1 U G2 with weights) -------\n";
     for (auto &[v, d] : dist)
     {
         if (d == std::numeric_limits<double>::infinity())
-            std::cout << "  dist[1 → " << v << "] = ∞\n";
+            std::cout << "  dist[1 -> " << v << "] = INF\n";
         else
-            std::cout << "  dist[1 → " << v << "] = " << d << "\n";
+            std::cout << "  dist[1 -> " << v << "] = " << d << "\n";
     }
 
     // ── Read Gp adjacency list from file and run Dijkstra ────
-    std::cout << "\n── Gp adjacency list from file (if present) ────────\n";
+    std::cout << "\n-- Gp adjacency list from file (if present) ----------\n";
     std::ifstream f("../../outputs/Exercise1_Python/Gp_adjacency_list.txt");
     if (f)
     {
@@ -141,10 +141,10 @@ int main()
         auto dp = dijkstra(Gp, 1u);
         std::cout << "  Dijkstra from 1:\n";
         for (auto &[v,d] : dp)
-            std::cout << "    dist[1→" << v << "] = " << d << "\n";
+            std::cout << "    dist[1->" << v << "] = " << d << "\n";
     }
     else
-        std::cout << "  (file not found – skipping)\n";
+        std::cout << "  (file not found - skipping)\n";
 
     return 0;
 }

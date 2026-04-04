@@ -181,7 +181,7 @@ public:
            << "  |E|=" << num_edges() << "\n";
         for (auto &kv : adj_)
         {
-            os << "  " << kv.first << " → { ";
+            os << "  " << kv.first << " -> { ";
             for (vertex w : kv.second) os << w << " ";
             os << "}\n";
         }
